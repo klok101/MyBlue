@@ -11,11 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="50dp"
-        android:layout_toEndOf="@+id/scanButton"
+        android:layout_marginEnd="5dp"
+        android:width="75dp"
         android:onClick="on"
-        android:text="Enable 5"
+        android:text="En: 5"
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="132dp" />
 
@@ -27,8 +28,23 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
+        android:width="75dp"
         android:onClick="on"
         android:text="On"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="100dp"
+        android:width="75dp"
+        android:onClick="on"
+        android:text="5"
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="132dp" />
 
@@ -37,9 +53,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
-        android:layout_toEndOf="@+id/enableButton"
+        android:layout_marginEnd="5dp"
+        android:layout_toStartOf="@+id/scan2"
+        android:width="75dp"
         android:onClick="discoverDevices"
         android:text="Scan" />
 
@@ -58,7 +75,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/button"
-        android:text="Enable 300" />
+        android:width="75dp"
+        android:text="En: 300" />
 
     <TextView
         android:id="@+id/textView"
@@ -67,11 +85,25 @@
         android:layout_below="@+id/button"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="100dp"
         android:capitalize="none"
         android:gravity="center_horizontal|center_vertical"
         android:text="Text View Here" />
+
+    <TextView
+        android:id="@+id/textV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        android:capitalize="none"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Text #2" />
 
 </RelativeLayout>

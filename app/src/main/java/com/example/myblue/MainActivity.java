@@ -11,12 +11,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.UUID;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     Button scanButton;
     Button scanButton2;
     TextView scanText;
+    UUID MY_UUID = UUID.fromString("b3cb909b-df23-4980-a446-c1fce34a6c2b");
+    TextView textV;
+
     IntentFilter scanIntentFilter = new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
     BroadcastReceiver scanModeReceiver = new BroadcastReceiver() {
         @Override
@@ -65,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+            textV.setText(String.valueOf(message.arg1));
+            return false;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         l1 = findViewById(R.id.listView);
         arrayList = new ArrayList();
+        textV = findViewById(R.id.textV);
 
         arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arrayList);
         l1.setAdapter(arrayAdapter);
@@ -117,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         registerReceiver(scanModeReceiver, scanIntentFilter);
+
+        Thread2 t = new Thread2();
+        t.start();
 
     }
 
@@ -201,5 +219,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
 
+    }
+
+    private class Thread2 extends Thread {
+        public void run() {
+            for (int i = 0; i < 50; i++) {
+                Message message = Message.obtain();
+                message.arg1 = i;
+                handler.sendMessage(message);
+                try {
+                    sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
